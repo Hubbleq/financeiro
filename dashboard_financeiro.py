@@ -54,6 +54,11 @@ with st.sidebar:
     st.subheader("Quanto quer ganhar?")
     margem_lucro = st.slider("Margem de Lucro (%)", 10, 50, 25) / 100
     analise.definir_margem_lucro(margem_lucro)
+
+    # Volume de vendas
+    st.subheader("Estimativa de Vendas")
+    volume_vendas = st.number_input("Itens vendidos por mês", min_value=1, value=1000, step=100, help="Quantos itens você espera vender no total por mês? Isso ajuda a dividir os custos fixos.")
+    analise.definir_volume_vendas(volume_vendas)
     
     # Resumo dos custos
     st.subheader("Resumo")
