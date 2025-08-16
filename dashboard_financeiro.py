@@ -17,7 +17,14 @@ st.set_page_config(
 
 # Título principal
 st.title("Sistema de Análise Financeira - Mercado")
-st.markdown("---")
+st.markdown("""
+<div style="
+    height: 2px;
+    background: linear-gradient(to right, #444444, #666666, #444444);
+    margin: 2rem 0;
+    border-radius: 1px;
+"></div>
+""", unsafe_allow_html=True)
 
 # CSS para o tema
 st.markdown("""
@@ -49,19 +56,29 @@ html, body {
 }
 
 /* Headers */
-h1, h2, h3, h4, h5, h6 {
-    color: #00BFFF; /* Deep Sky Blue for headers */
+h1 {
+    color: #5DADE2; /* Steel Blue for headers */
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #5DADE2;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+h2, h3, h4, h5, h6 {
+    color: #5DADE2; /* Steel Blue for headers */
     font-weight: 700;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #00BFFF;
+    border-bottom: 2px solid #5DADE2;
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     transition: color 0.3s ease; /* Smooth color transition */
 }
 
 .stSidebar h2 {
-    color: #00BFFF;
+    color: #5DADE2;
     border-bottom: none;
     margin-top: 2.5rem; /* More space above sidebar subheaders */
     margin-bottom: 1rem;
@@ -91,8 +108,8 @@ label {
     transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 .stNumberInput>div>div>input:focus, .stTextInput>div>div>input:focus {
-    border-color: #00BFFF;
-    box-shadow: 0 0 0 0.2rem rgba(0, 191, 255, 0.35); /* Stronger focus shadow */
+    border-color: #5DADE2;
+    box-shadow: 0 0 0 0.2rem rgba(93, 173, 226, 0.35); /* Stronger focus shadow */
     background-color: #4A4A4A; /* Slightly lighter on focus */
     outline: none;
 }
@@ -107,7 +124,7 @@ label {
     border-radius: 0.3rem;
 }
 .stSlider .st-bi { /* Slider thumb */
-    background-color: #00BFFF;
+    background-color: #5DADE2;
     border: 3px solid #00BFFF;
     width: 1.4rem;
     height: 1.4rem;
@@ -120,7 +137,7 @@ label {
 
 /* Buttons */
 .stButton>button {
-    background-color: #00BFFF;
+    background-color: #5DADE2;
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -129,12 +146,12 @@ label {
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     cursor: pointer;
     font-size: 1.05rem;
-    box-shadow: 0 3px 8px rgba(0, 191, 255, 0.3);
+    box-shadow: 0 3px 8px rgba(93, 173, 226, 0.3);
 }
 .stButton>button:hover {
     background-color: #009ACD; /* Darker blue on hover */
     transform: translateY(-0.2rem);
-    box-shadow: 0 5px 12px rgba(0, 191, 255, 0.4);
+    box-shadow: 0 5px 12px rgba(93, 173, 226, 0.4);
 }
 
 /* Metrics */
@@ -157,7 +174,7 @@ label {
     margin-bottom: 0.6rem;
 }
 .stMetric > div > div:last-child { /* Metric value */
-    color: #00BFFF;
+    color: #5DADE2;
     font-size: 1.5rem; /* Further reduced for better fit */
     font-weight: 700;
     overflow-wrap: break-word;
@@ -181,16 +198,33 @@ label {
 }
 .stDataFrame th {
     background-color: #3A3A3A;
-    color: #00BFFF;
+    color: #5DADE2;
     font-weight: 600;
     padding: 1rem 1.2rem;
     text-align: left;
     border-bottom: 2px solid #00BFFF;
 }
 .stDataFrame td {
-    border-top: 1px solid #444444;
+        border-top: 1px solid #444444;
     padding: 0.9rem 1.2rem;
 }
+
+/* Metric Bar Styling */
+.metric-bar {
+    height: 5px;
+    background-color: #444444; /* Dark grey background */
+    border-radius: 2.5px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.metric-bar-fill {
+    height: 100%;
+    background-color: #5DADE2; /* New accent color */
+    width: 100%; /* Static fill for now */
+    border-radius: 2.5px;
+}
+
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
@@ -280,6 +314,11 @@ with st.sidebar:
     st.subheader("Resumo")
     total_custos = sum(custos_fixos.values())
     st.metric("Total Custos Fixos", f"R$ {total_custos:,.2f}")
+    st.markdown("""
+    <div class="metric-bar">
+        <div class="metric-bar-fill"></div>
+    </div>
+    """, unsafe_allow_html=True)
     st.metric("Margem de Lucro", f"{margem_lucro*100:.1f}%")
 
 # Área principal
@@ -337,7 +376,14 @@ if uploaded_file is not None:
         df_produtos = analise.carregar_produtos_excel(uploaded_file)
         df_resultados = analise.calcular_markup_lote()
 
-        st.markdown("---")
+        st.markdown("""
+<div style="
+    height: 2px;
+    background: linear-gradient(to right, #444444, #666666, #444444);
+    margin: 2rem 0;
+    border-radius: 1px;
+"></div>
+""", unsafe_allow_html=True)
         st.header("Análise dos Produtos")
 
         # Tabs para diferentes visualizações
@@ -453,7 +499,14 @@ if uploaded_file is not None:
         st.error(f"Erro na análise: {str(e)}")
 
 # Footer
-st.markdown("---")
+st.markdown("""
+<div style="
+    height: 2px;
+    background: linear-gradient(to right, #444444, #666666, #444444);
+    margin: 2rem 0;
+    border-radius: 1px;
+"></div>
+""", unsafe_allow_html=True)
 st.markdown(
     """
     <div style='text-align: center; color: #666;'>
