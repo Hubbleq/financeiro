@@ -129,6 +129,15 @@ class AnaliseFinanceira:
         if self.produtos.empty:
             raise ValueError("Nenhum produto carregado. Use carregar_produtos_excel() primeiro.")
         
+        # Se custos_fixos_por_produto não for fornecido, calcula com base no total de itens
+        if custos_fixos_por_produto is None:
+            total_itens = self.produtos['Quantidade'].sum()
+            if total_itens > 0:
+                custos_fixos_totais = sum(self.custos_fixos.values())
+                custos_fixos_por_produto = custos_fixos_totais / total_itens
+            else:
+                custos_fixos_por_produto = 0
+        
         resultados = []
         
         for _, produto in self.produtos.iterrows():
