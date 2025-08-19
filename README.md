@@ -137,15 +137,6 @@ Preço de Venda = Custo Total ÷ (1 - Margem de Lucro)
 Markup = ((Preço de Venda - Custo de Compra) ÷ Custo de Compra) × 100
 ```
 
-## Margens de lucro sugeridas
-
-| **Tipo de Produto** | **Margem Sugerida** | **Por quê?** |
-|---------------------|---------------------|--------------|
-| **Produtos básicos** (Arroz, Feijão) | 15-25% | Muita concorrência, preço baixo |
-| **Produtos especiais** (Queijos, Frios) | 30-50% | Menos concorrência, mais valor |
-| **Produtos que estragam** (Frutas, Verduras) | 40-60% | Risco de perder, precisa repor |
-| **Produtos de limpeza** | 25-35% | Vende bem, margem boa |
-| **Bebidas** | 20-30% | Concorrência média, vende rápido |
 
 ## Custos fixos típicos (por mês)
 
